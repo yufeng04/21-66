@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>级联下拉列表</title>
+    <meta charset="UTF-8">
+</head>
+
+<body onload="load()">
+    <div>
+        <select class='country' id='country' onchange='changeCity()'>
+            <option value=''>Select your country</option>
+        </select>
+        <select class='city' id='city'>
+            <option value=''>Select your country</option>
+        </select>
+    </div>
+
+    <script>
+        var country=document.getElementById("country");
+        var city=document.getElementById("city");
+        var arrCountry=new Array(new Option("Select your country",''),new Option("中国","China"),new Option("美国","American"));
+        var arrCity=new Array();
+        arrCity[0]=new Array(new Option("Select your country",''));
+        arrCity[1]=new Array(new Option("北京",'Beijing'),new Option("上海",'Shanghai'),new Option("深圳",'Shenzhen'));
+        arrCity[2]=new Array(new Option("纽约",'NewYork'),new Option("华盛顿",'Washington'));
+        //动态载入所有省份
+        function load(){
+            for(var i=0;i<arrCountry.length;i++){
+                country.options[i]=arrCountry[i];
+            }
+        }
+        //选中国家之后，根据索引动态载入相应城市
+        function changeCity(){
+            //清空上次的选项
+            city.options.length=0;
+            //获取省一级的下拉列表选中的索引
+            var index=country.selectedIndex;
+            for(var i=0;i<arrCity[index].length;i++){
+                city.options[i]=arrCity[index][i];
+            }
+        }
+    </script>
+</body>
+</html>

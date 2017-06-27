@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tab 切换</title>
+</head>
+<style type="text/css">
+    #tab ul {
+    	display: flex;
+    	justify-content: space-between;
+    }
+	#tab li {
+		display: inline-block;
+		line-height: 30px;
+		width: 100px;
+		height: 30px;
+		text-align: center;
+		background: #ccc;
+	}
+	#tab li.cur {
+		color: #fff;
+		background: #000;
+	}
+	.con {
+		display: none;
+	}
+	#con div:first-child {
+		display: block;
+	}    
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+    var tab = document.getElementById("tab").getElementsByTagName("li");
+    var con = document.getElementById("con").getElementsByTagName("div");
+    for (var i = 0; i < tab.length; i++) {
+    	tab[i].index = i;
+    	tab[i].onmouseover = function() {
+    		for (var k = 0; k<con.length; k++) {
+    			con[k].style.display = "none";
+    			tab[k].className = " ";
+    		}
+    		tab[this.index].className = "cur";
+    		con[this.index].style.display = "block";
+    	}
+    }
+	}
+</script>
+
+<body>
+<div class="box">
+ <!-- tab栏 -->
+   <div id="tab">
+   	     <ul>
+   	     	<li class="cur">TABONE</li>
+   	     	<li>TABTWO</li>
+   	     	<li>TABTRE</li>
+   	     	<li>TABFOR</li>
+   	     </ul>
+   </div>
+	<!-- 内容部分 -->
+	<div id="con">
+		<div class="con">
+		     <span>TABONE some text some text some text some text</span>
+		</div>
+
+		<div class="con">
+		     <span>TABTWO some text some text some text some text</span>
+		</div>
+
+		<div class="con">
+		     <span>TABTRE some text some text some text some text<span>
+		</div>
+
+		<div class="con">
+		     <span>TABFOR some text some text some text some text</span>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
